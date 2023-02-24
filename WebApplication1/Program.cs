@@ -16,12 +16,12 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddTransient<MySqlConnection>(X=>new MySqlConnection("Server=127.0.0.1;Port=3306;Database=sms_provider_api;uid=root;password=123456Ab;Convert Zero Datetime=True;usexatransactions=false"));
+        builder.Services.AddScoped<MySqlConnection>(X=>new MySqlConnection("Server=127.0.0.1;Port=3306;Database=sms_provider_api;uid=root;password=123456Ab;Convert Zero Datetime=True;usexatransactions=false"));
         
         var app = builder.Build();
 
-        MySqlConnection sqlConnection= app.Services.GetRequiredService<MySqlConnection>();
-        var result= sqlConnection.QueryAsync("SELECT * FROM sms_provider_api.resource_status;");
+        //MySqlConnection sqlConnection= app.Services.GetRequiredService<MySqlConnection>();
+        //var result= sqlConnection.QueryAsync("SELECT * FROM sms_provider_api.resource_status;");
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
